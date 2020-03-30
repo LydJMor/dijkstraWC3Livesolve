@@ -32,9 +32,15 @@ router.post( '/', ( req, res )=>{
     }) // end query
 }) //end POST
 // put
-router.put( '/', ( req, res )=>{
-    console.log( 'in /items PUT' );
-    res.send( 'chirp' );
+router.put( '/:id', ( req, res )=>{
+    console.log( 'in /items PUT:', req.params );
+    queryString = `UPDATE "to-do" SET complete = TRUE where id=($1)`;
+    pool.query( queryString, [ req.params.id ] ).then( ( result )=>{
+        res.sendStatus( 200 )
+    }).catch( ( err )=>{
+        console.log( err );
+        res.sendStatus( 500 );
+    }) //end UPDATE
 }) //end PUT
 // delete
 router.delete( '/:id', ( req, res )=>{

@@ -25,7 +25,18 @@ function addTask(){
 } // end addTask
 
 function completeTask(){
-    console.log( 'in completeTask' );
+    const myId = $( this ).data( 'id' );
+    console.log( 'in completeTask:', myId );
+    $.ajax({
+        type: 'PUT',
+        url: `/items/${myId}`
+    }).then( function( response ){
+        console.log( 'back from server with:', response );
+        getTasks();
+    }).catch( function( err ){
+        console.log( err );
+        alert( 'error updating item. see console' );
+    }) //end PUT
 } // end completeTask
 
 function deleteTask(){
@@ -77,6 +88,7 @@ function getTasks(){
 function onReady(){
     $( '#addTaskButton' ).on( 'click', addTask );
     $( '#tasksOut' ).on( 'click', '.deleteTaskButton', deleteTask );
+    $( '#tasksOut' ).on( 'click', '.completeTaskButton', completeTask );
     // get tasks from server
     getTasks();
 } // end onReady
