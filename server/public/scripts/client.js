@@ -29,7 +29,18 @@ function completeTask(){
 } // end completeTask
 
 function deleteTask(){
-    console.log( 'in deleteTask' );
+    const myId = $( this ).data( 'id' );
+    console.log( 'in deleteTask:', myId );
+    $.ajax({
+        type: 'DELETE',
+        url: `/items/${myId}`
+    }).then( function( response ){
+        console.log( 'back from server with:', response );
+        getTasks();
+    }).catch( function( err ){
+        alert( 'error deleting task. see console.' );
+        console.log( err );
+    })
 } // end deleteTask
 
 function getTasks(){
@@ -65,6 +76,7 @@ function getTasks(){
 
 function onReady(){
     $( '#addTaskButton' ).on( 'click', addTask );
+    $( '#tasksOut' ).on( 'click', '.deleteTaskButton', deleteTask );
     // get tasks from server
     getTasks();
 } // end onReady

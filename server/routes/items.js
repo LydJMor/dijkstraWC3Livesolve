@@ -37,9 +37,14 @@ router.put( '/', ( req, res )=>{
     res.send( 'chirp' );
 }) //end PUT
 // delete
-router.delete( '/', ( req, res )=>{
-    console.log( 'in /items DELETE' );
-    res.send( 'ribbet' );
+router.delete( '/:id', ( req, res )=>{
+    console.log( 'in /items DELETE:', req.params );
+    let queryString = `DELETE FROM "to-do" WHERE id= ($1)`;
+    pool.query( queryString, [ req.params.id ] ).then( ( result )=>{
+        res.sendStatus( 200 );
+    }).then( ( err )=>{
+        res.sendStatus( 200 );
+    }) //end query
 }) //end DELETE
 // exports
 module.exports = router;
