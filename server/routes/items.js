@@ -10,7 +10,10 @@ router.get( '/', ( req, res )=>{
 // post
 router.post( '/', ( req, res )=>{
     console.log( 'in /items POST:', req.body );
-    res.send( 'woof' );
+    // create a query string
+    // run the query
+    // if successful send status 201
+    // end log error & send 500
 }) //end POST
 // put
 router.put( '/', ( req, res )=>{
