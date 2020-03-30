@@ -1,7 +1,7 @@
 Checklist from assignment:
 
 
-- Create a front end experience that allows a user to create a Task.
+X Create a front end experience that allows a user to create a Task.
 - When the Task is created, it should be stored inside of a database (SQL)
 - Whenever a Task is created the front end should refresh to show all tasks that need to be completed.
 - Each Task should have an option to 'Complete' or 'Delete'.
