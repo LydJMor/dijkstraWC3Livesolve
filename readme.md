@@ -1,4 +1,6 @@
-Video: -TBA-
+Video live solve for Dijkstra Weekend Challenge 3
+
+Video link: -TBA-
 
 Checklist from assignment:
 
