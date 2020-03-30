@@ -5,7 +5,16 @@ const pool = require( '../modules/pool' );
 // get
 router.get( '/', ( req, res )=>{
     console.log( 'in /items GET' );
-    res.send( 'meow' );
+    let queryString = `SELECT * FROM "to-do"`;
+    // run the query
+    pool.query( queryString).then( ( result )=>{
+        // if successful send status 201
+        res.send( result.rows );
+    }).catch( ( err )=>{
+        // end log error & send 500
+        console.log( err );
+        res.sendStatus( 500 );
+    }) // end query
 }) //end GET
 // post
 router.post( '/', ( req, res )=>{

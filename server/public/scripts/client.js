@@ -34,6 +34,33 @@ function deleteTask(){
 
 function getTasks(){
     console.log( 'in getTasks' );
+    // ajax call GET to /items
+    $.ajax({
+        type: 'GET',
+        url: '/items'
+    }).then( function ( response ){
+        console.log( 'back from server with:', response );
+        // update DOM
+        let el = $( '#tasksOut' );
+        el.empty();
+        for( let i=0; i<response.length; i++){
+            let appendString = `<li`;
+            if( response[i].complete ){
+                appendString += ` class="complete" `
+            }
+            else{
+                appendString += ` class="incomplete" `
+            }
+            appendString += `>${response[i].task}
+                <button class="completeTaskButton" data-id="${response[i].id}">Complete</button>
+                <button class="deleteTaskButton" data-id="${response[i].id}">delete</button>
+            </li>`;
+            el.append( appendString );
+        } // end for
+    }).catch( function( err ){
+        console.log( err );
+        alert( 'error getting tasks. see console' );
+    })
 } // end getTasks
 
 function onReady(){
