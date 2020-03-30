@@ -1,6 +1,6 @@
 Video live solve for Dijkstra Weekend Challenge 3
 
-Video link: -TBA-
+Video link: https://vimeo.com/402040876
 
 Checklist from assignment:
 
